@@ -1,0 +1,308 @@
+swagger: '2.0'
+info:
+  description: "This is an auction house rest service. The base URL is by default [http://localhost:9000/app/api](http://localhost:9000/app/api) ."
+  version: 1.0-SNAPSHOT
+  title: Auction House
+host: localhost:9000/app
+basePath: /api
+schemes:
+  - http
+tags: []
+paths:
+  /house:
+    get:
+      description: Lists all action houses
+      consumes: []
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/House'
+  '/house/{houseName}':
+    post:
+      description: Creates an auction house.
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: houseName
+          in: path
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            $ref: '#/definitions/Message'
+        '409':
+          description: Conflict
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+    delete:
+      description: Deletes a specific house
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: houseName
+          in: path
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+  '/house/{houseName}/auction':
+    get:
+      description: |-
+        Lists auctions for a specific house and optionally for a specific user. Can
+        optionally be filtered by status : NOT_STARTED, RUNNING, TERMINATED, DELETED;
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+        - type: string
+          name: status
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Auction'
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+  '/house/{houseName}/auction/{auctionName}':
+    post:
+      description: Creates an auction for a specific house.
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+        - type: string
+          name: dsc
+          in: query
+          required: true
+        - type: integer
+          name: endTime
+          in: query
+          required: true
+        - type: integer
+          name: startPrice
+          in: query
+          required: true
+        - type: integer
+          name: startTime
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+        '409':
+          description: Conflict
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+    delete:
+      description: Marks a specific auction as being deleted.
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: Not Found
+          headers: {}
+  '/house/{houseName}/auction/{auctionName}/bid':
+    get:
+      description: 'Lists all bids for a specific house and auction, and optionally for a user.'
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+        - type: string
+          name: username
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bid'
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+  '/house/{houseName}/auction/{auctionName}/bid/{username}':
+    post:
+      description: Creates a bid for a specific house and auction and user.
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+        - type: string
+          name: username
+          in: path
+          required: true
+        - type: integer
+          name: bid
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+        '422':
+          description: ''
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+  '/house/{houseName}/auction/{auctionName}/winner':
+    get:
+      description: Returns the winner of the auction.
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - type: string
+          name: auctionName
+          in: path
+          required: true
+        - type: string
+          name: houseName
+          in: path
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          schema:
+            type: string
+        '404':
+          description: Not Found
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+        '409':
+          description: Conflict
+          headers: {}
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+definitions:
+  Message:
+    properties: 
+      Message:
+        type: "string"
+        example: "message1"
+  ErrorMessage:
+    properties: 
+      Error:
+        type: "string"
+        example: "error1"
+  House:
+    properties: 
+      name:
+        type: "string"
+        example: "house1"
+  Auction:
+    properties: 
+      name:
+        type: "string"
+        example: "auction1"
+      description:
+        type: "string"
+        example: "description1"
+  Bid:
+    properties: 
+      username:
+        type: "string"
+        example: "username1"
+      value:
+        type: "integer"
+        example: "10"
+

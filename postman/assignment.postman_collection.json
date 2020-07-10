@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "9554e715-df17-444d-9771-2b75e030cb75",
+		"name": "assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create auction house",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/webapi/house/h1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"webapi",
+						"house",
+						"h1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete auction house",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list auction houses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/webapi/house",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"webapi",
+						"house"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create auction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction/a1?dsc=description1&endTime=9594138478972&startPrice=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction",
+						"a1"
+					],
+					"query": [
+						{
+							"key": "dsc",
+							"value": "description1"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "9594138478972"
+						},
+						{
+							"key": "startPrice",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete auction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction/a1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction",
+						"a1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list auctions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "RUNNING",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create bid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction/a1/bid/u1?bid=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction",
+						"a1",
+						"bid",
+						"u1"
+					],
+					"query": [
+						{
+							"key": "bid",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list bids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction/a1/bid?username=u1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction",
+						"a1",
+						"bid"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "u1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get winner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/app/api/house/h1/auction/a1/bid?username=u1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"app",
+						"api",
+						"house",
+						"h1",
+						"auction",
+						"a1",
+						"bid"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "u1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
